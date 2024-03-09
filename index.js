@@ -1,10 +1,14 @@
-import express from "express";
-import router from "./routes/fileSharing.js";
-// import mongoose from "mongoose";
+const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
-// app.use(express.);
 
-app.use(router)
+const PORT = 1000;
 
-app.listen(10000,()=>console.log("server is running on port 10000"))
+app.use(express.json());
+
+// app.use(fileSharingRoutes);
+
+
+
+app.listen(PORT, () => console.log(`Server is running at port ${PORT}`));
