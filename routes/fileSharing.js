@@ -1,9 +1,10 @@
 const express = require("express");
-const {uploadFile}=require("../controllers/fileSharing")
+const { uploadFile, downloadFile } = require("../controllers/fileSharing");
 
 
 const router = express.Router();
 
-router.post("/", uploadFile)
+router.post("/api/files", uploadFile);
+router.get("/files/download/:fileId", downloadFile);
 
 module.exports = router;

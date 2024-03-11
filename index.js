@@ -12,7 +12,7 @@ mongoose.connect("mongodb://localhost:27017/file-sharing-app")
     .then(console.log(`Database Connected Successfully`))
     .catch((err)=>console.log(`Error connecting Mongo Database Error - ${err}`));
 
-app.use("/api/files", fileSharingRoutes);
+app.use(fileSharingRoutes);
 
 
 

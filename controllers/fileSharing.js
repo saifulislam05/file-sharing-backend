@@ -37,11 +37,13 @@ const uploadFile = (req, res) => {
 
             const newlyInsertedFile= await newFile.save();
 
+            const downloadStr = `http://localhost:10000/files/download/${newlyInsertedFile._id}`;
             console.log(newlyInsertedFile);
             res.status(500).json({
               success: true,
-                message: "File uploaded Successfully",
-              fileId:newlyInsertedFile._id, //unique id from db
+              message: "File uploaded Successfully",
+              fileId: newlyInsertedFile._id, //unique id from db
+              downloadLink: downloadStr, //donwloadable Link
             });
         }
     })
@@ -50,4 +52,19 @@ const uploadFile = (req, res) => {
     
 }
 
-module.exports = { uploadFile };
+const downloadFile = async (req, res) => {
+    const fileId = req.params.fileId;
+    console.log(req.params.fileId);
+
+    const file = await fileSharingModel.findById(fileId);
+
+    if (!file) {
+        return res.status(404).json({
+            success: false,
+            message: "File does not exist or removed for the given ID"
+        })
+    } 
+    res.download(file.path)
+
+}
+module.exports = { uploadFile, downloadFile };
