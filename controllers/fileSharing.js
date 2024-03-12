@@ -50,7 +50,7 @@ const uploadFile = (req, res) => {
 
       const newlyInsertedFile = await newFile.save();
 
-      const downloadStr = `http://localhost:10000/files/download/${newlyInsertedFile._id}`;
+      const downloadStr = `https://file-sharing-backend-wofo.onrender.com/files/download/${newlyInsertedFile._id}`;
       console.log(newlyInsertedFile);
       res.status(500).json({
         success: true,
