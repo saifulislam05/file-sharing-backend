@@ -89,7 +89,7 @@ const sendDownloadableLinkOnEmail = async (req, res) => {
     });
   }
 
-  const downloadLink = `http://localhost:10000/files/download/${fileId}`;
+  const downloadLink = `https://file-sharing-backend-wofo.onrender.com/files/download/${fileId}`;
   const to = req.body.to;
   const subject = "File Downloadable Link";
   const text = "Hello ✔️";
