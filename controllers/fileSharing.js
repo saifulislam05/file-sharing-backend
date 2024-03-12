@@ -25,17 +25,27 @@ const upload = multer({
 
 const uploadFile = (req, res) => {
   upload(req, res, async (err) => {
+    const file = req.file;
+    if (!file) {
+      return res.status(400).json({
+        success: false,
+        message: "files not provided",
+        
+      });
+    }
+
     if (err) {
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: "Error uploading file",
+        
       });
     } else {
       console.log("File uploaded Successfully");
       const newFile = new fileSharingModel({
-        filename: req.file.filename,
-        path: req.file.path,
-        size: req.file.size,
+        filename: file.filename,
+        path: file.path,
+        size: file.size,
       });
 
       const newlyInsertedFile = await newFile.save();
