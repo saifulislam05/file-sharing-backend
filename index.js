@@ -11,6 +11,7 @@ app.use(express.json());
 
 mongoose
   .connect(process.env.DB_CONNECTION_STRING)
+  
   .then(console.log(`Database Connected Successfully`))
   .catch((err) =>
     console.log(`Error connecting Mongo Database Error - ${err}`)
